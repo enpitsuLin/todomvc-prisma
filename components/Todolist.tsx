@@ -1,3 +1,5 @@
+import { useAtom } from 'jotai'
+import { filterType } from '../store/todos'
 import TodoItem, { Todo } from './TodoItem'
 
 interface Props {
@@ -5,6 +7,7 @@ interface Props {
 }
 
 const TodoList: React.FC<Props> = ({ todos = [] }) => {
+  const [type, setType] = useAtom(filterType)
   return (
     <>
       <header className="header">
@@ -26,13 +29,19 @@ const TodoList: React.FC<Props> = ({ todos = [] }) => {
         </span>
         <ul className="filters">
           <li>
-            <a>All</a>
+            <a onClick={() => setType('all')} className={type == 'all' ? 'selected' : ''}>
+              All
+            </a>
           </li>
           <li>
-            <a>Active</a>
+            <a onClick={() => setType('active')} className={type == 'active' ? 'selected' : ''}>
+              Active
+            </a>
           </li>
           <li>
-            <a>Completed</a>
+            <a onClick={() => setType('completed')} className={type == 'completed' ? 'selected' : ''}>
+              Completed
+            </a>
           </li>
         </ul>
       </footer>
