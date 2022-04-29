@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import { activeTodoCountAtom, filterType } from '../store/todos'
+import { activeTodoCountAtom, anyTodosDone, filterType } from '../store/todos'
 import TodoItem, { Todo } from './TodoItem'
 
 interface Props {
@@ -9,6 +9,7 @@ interface Props {
 const TodoList: React.FC<Props> = ({ todos = [] }) => {
   const [type, setType] = useAtom(filterType)
   const [activeCount] = useAtom(activeTodoCountAtom)
+  const [anyDone] = useAtom(anyTodosDone)
   return (
     <>
       <header className="header">
@@ -45,6 +46,11 @@ const TodoList: React.FC<Props> = ({ todos = [] }) => {
             </a>
           </li>
         </ul>
+        {anyDone && (
+          <button className="clear-completed" onClick={() => {}}>
+            Clear completed
+          </button>
+        )}
       </footer>
     </>
   )
