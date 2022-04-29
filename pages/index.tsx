@@ -9,9 +9,9 @@ import prisma from '../lib/prisma'
 import { filterAtom, todosAtom } from '../store/todos'
 
 const Blog: React.FC<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
-  const initalTodos = props.items
-  useHydrateAtoms([[todosAtom, initalTodos]] as const)
-  const [todos, setTodos] = useAtom(filterAtom)
+  const initialTodos = props.items
+  useHydrateAtoms([[todosAtom, initialTodos]] as const)
+  const [todos] = useAtom(filterAtom)
   return (
     <div>
       <div className="todoapp">
