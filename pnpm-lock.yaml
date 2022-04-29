@@ -13,6 +13,7 @@ specifiers:
   todomvc-app-css: ^2.4.2
   ts-node: 10.7.0
   typescript: 4.6.4
+  use-debounce: ^7.0.1
 
 dependencies:
   '@prisma/client': 3.13.0_prisma@3.13.0
@@ -22,6 +23,7 @@ dependencies:
   react-dom: 17.0.2_react@17.0.2
   react-markdown: 8.0.3_c8e45b4eb687790dba17b4e1c4b4273f
   todomvc-app-css: 2.4.2
+  use-debounce: 7.0.1_react@17.0.2
 
 devDependencies:
   '@types/node': 16.11.32
@@ -951,6 +953,15 @@ packages:
       '@types/unist': 2.0.6
       unist-util-is: 5.1.1
       unist-util-visit-parents: 5.1.0
+    dev: false
+
+  /use-debounce/7.0.1_react@17.0.2:
+    resolution: {integrity: sha512-fOrzIw2wstbAJuv8PC9Vg4XgwyTLEOdq4y/Z3IhVl8DAE4svRcgyEUvrEXu+BMNgMoc3YND6qLT61kkgEKXh7Q==}
+    engines: {node: '>= 10.0.0'}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 17.0.2
     dev: false
 
   /uvu/0.5.3:

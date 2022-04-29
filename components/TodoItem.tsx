@@ -2,6 +2,7 @@ import { useAtom } from 'jotai'
 import { useCallback } from 'react'
 import { useRef, useState } from 'react'
 import { todosAtom } from '../store/todos'
+import { useDebouncedCallback } from 'use-debounce'
 
 export interface Todo {
   label: string
@@ -22,17 +23,19 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
   const finishEditing = useCallback(() => {
     setEditing(false)
   }, [todo])
+  const toggleDone = useDebouncedCallback((id: number, done: boolean) => {
+    fetch('/api/todo', { method: 'POST', body: JSON.stringify({ id, done: !done }) })
+  }, 1000)
   const onDone = useCallback(() => {
     setTodos((todos) => {
       return todos.map((t) => {
         if (t.id === todo.id) {
+          toggleDone(t.id, t.done)
           return { ...t, done: !t.done }
         }
         return t
       })
     })
-    // TODO debounce
-    fetch('/api/todo', { method: 'POST', body: JSON.stringify({ id: todo.id, done: !todo.done }) })
   }, [todo.id])
   return (
     <li className={`${editing ? 'editing' : ''} ${todo.done ? 'completed' : ''}`}>
