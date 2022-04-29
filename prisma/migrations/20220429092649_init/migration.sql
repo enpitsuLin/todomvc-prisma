@@ -1,7 +1,0 @@
--- CreateTable
-CREATE TABLE "TodoItem" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "title" TEXT NOT NULL,
-    "createAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "completed" BOOLEAN NOT NULL DEFAULT false
-);

@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 
 const todoData: Prisma.TodoItemCreateInput[] = [
   {
-    title: 'Test1'
+    label: 'Test1'
   }
 ]
 
