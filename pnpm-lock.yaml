@@ -9,6 +9,7 @@ specifiers:
   react: 17.0.2
   react-dom: 17.0.2
   react-markdown: 8.0.3
+  todomvc-app-css: ^2.4.2
   ts-node: 10.7.0
   typescript: 4.6.4
 
@@ -18,6 +19,7 @@ dependencies:
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-markdown: 8.0.3_c8e45b4eb687790dba17b4e1c4b4273f
+  todomvc-app-css: 2.4.2
 
 devDependencies:
   '@types/node': 16.11.32
@@ -793,6 +795,10 @@ packages:
         optional: true
     dependencies:
       react: 17.0.2
+    dev: false
+
+  /todomvc-app-css/2.4.2:
+    resolution: {integrity: sha512-ViAkQ7ed89rmhFIGRsT36njN+97z8+s3XsJnB8E2IKOq+/SLD/6PtSvmTtiwUcVk39qPcjAc/OyeDys4LoJUVg==}
     dev: false
 
   /trough/2.1.0:
