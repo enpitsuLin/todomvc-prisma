@@ -31,6 +31,8 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
         return t
       })
     })
+    // TODO debounce
+    fetch('/api/todo', { method: 'POST', body: JSON.stringify({ id: todo.id, done: !todo.done }) })
   }, [todo.id])
   return (
     <li className={`${editing ? 'editing' : ''} ${todo.done ? 'completed' : ''}`}>
