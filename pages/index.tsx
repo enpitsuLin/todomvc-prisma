@@ -24,7 +24,7 @@ const Blog: React.FC<InferGetServerSidePropsType<typeof getServerSideProps>> = (
 
 export const getServerSideProps: GetServerSideProps<{ items: Todo[] }> = async () => {
   const items = await prisma.todoItem.findMany()
-  return { props: { items: items.map((item) => ({ id: item.id, label: item.label, done: item.done })) } }
+  return { props: { items: items.map((item) => ({ ...item, createAt: item.createAt.toJSON() })) } }
 }
 
 export default Blog

@@ -12,4 +12,5 @@ model TodoItem {
   label    String
   createAt DateTime @default(now())
   done     Boolean  @default(false)
+  isDelete Boolean  @default(false)
 }

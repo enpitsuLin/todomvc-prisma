@@ -7,6 +7,8 @@ export interface Todo {
   label: string
   done: boolean
   id: number
+  isDelete: boolean
+  createAt: string
 }
 
 interface Props {
