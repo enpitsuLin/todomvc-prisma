@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { useRef, useState } from 'react'
 
 export interface Todo {
@@ -13,6 +14,9 @@ interface Props {
 const TodoItem: React.FC<Props> = ({ todo }) => {
   const [editing, setEditing] = useState(false)
   const ref = useRef<HTMLInputElement>(null)
+  const finishEditing = useCallback(() => {
+    setEditing(false)
+  }, [todo])
   return (
     <li className={`${editing ? 'editing' : ''} ${todo.done ? 'completed' : ''}`}>
       <div className="view">
