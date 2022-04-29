@@ -17,3 +17,8 @@ export const activeTodoCountAtom = atom((get) => {
   const todos = get(todosAtom)
   return todos.filter((todo) => !todo.done).length
 })
+
+export const anyTodosDone = atom((get) => {
+  const todos = get(todosAtom)
+  return todos.some((todo) => todo.done)
+})
