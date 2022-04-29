@@ -12,3 +12,8 @@ export const filterAtom = atom((get) => {
     return todo.done === (get(filterType) === 'completed')
   })
 })
+
+export const activeTodoCountAtom = atom((get) => {
+  const todos = get(todosAtom)
+  return todos.filter((todo) => !todo.done).length
+})
