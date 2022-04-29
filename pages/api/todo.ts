@@ -14,9 +14,9 @@ async function deleteTodo(id: number) {
   })
 }
 async function updateTodo(id: number, label: string, done?: boolean) {
-  const data = { label, completed: undefined as boolean | undefined }
+  const data = { label, done: undefined as boolean | undefined }
   if (done !== undefined) {
-    data.completed = done
+    data.done = done
   }
   await prisma.todoItem.update({
     where: { id },
