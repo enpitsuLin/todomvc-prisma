@@ -16,7 +16,7 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
   return (
     <li className={`${editing ? 'editing' : ''} ${todo.done ? 'completed' : ''}`}>
       <div className="view">
-        <input type="checkbox" className="toggle" checked={todo.done} autoFocus />
+        <input type="checkbox" className="toggle" checked={todo.done} onChange={() => {}} autoFocus />
         <label>{todo.label}</label>
         <button className="destroy" />
       </div>
