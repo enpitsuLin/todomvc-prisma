@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import { KeyboardEventHandler, useCallback } from 'react'
+import { ChangeEventHandler, KeyboardEventHandler, useCallback } from 'react'
 import { useRef, useState } from 'react'
 import { todosAtom } from '../store/todos'
 import { useDebouncedCallback } from 'use-debounce'
@@ -41,6 +41,27 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
   const [editing, setEditing] = useState(false)
   const ref = useRef<HTMLInputElement>(null)
 
+  const toggleDone = useDebouncedCallback((done: boolean) => {
+    fetch('/api/todo', { method: 'POST', body: JSON.stringify({ id: todo.id, done: !done }) })
+  }, 1000)
+
+  const setLabel = useDebouncedCallback((label) => {
+    fetch('/api/todo', { method: 'POST', body: JSON.stringify({ id: todo.id, label }) })
+  }, 1000)
+
+  const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const label = e?.target.value
+    setTodos((todos) => {
+      return todos.map((t) => {
+        if (t.id === todo.id) {
+          setLabel(label)
+          return { ...t, label }
+        }
+        return t
+      })
+    })
+  }
+
   useClickAway(ref, () => {
     finishEditing()
   })
@@ -53,15 +74,11 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
     setEditing(true)
   })
 
-  const toggleDone = useDebouncedCallback((id: number, done: boolean) => {
-    fetch('/api/todo', { method: 'POST', body: JSON.stringify({ id, done: !done }) })
-  }, 1000)
-
   const onDone = useCallback(() => {
     setTodos((todos) => {
       return todos.map((t) => {
         if (t.id === todo.id) {
-          toggleDone(t.id, t.done)
+          toggleDone(t.done)
           return { ...t, done: !t.done }
         }
         return t
@@ -92,7 +109,7 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
           type="text"
           autoFocus={true}
           value={todo.label}
-          onChange={() => {}}
+          onChange={onChange}
           className="edit"
           onKeyPress={onEnter}
         />
