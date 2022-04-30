@@ -10,6 +10,11 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         }
       }
     })
+    await prisma.todoItem.create({
+      data: {
+        label: 'Todo Items will be reset pre hour'
+      }
+    })
     res.status(200).json({ message: 'Success', data: JSON.stringify(req.query) })
   }
   res.status(403).json({ message: 'Forbidden' })
