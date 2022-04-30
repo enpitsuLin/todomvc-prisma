@@ -12,7 +12,7 @@
     "start": "next start",
     "push": "prisma db push",
     "seed": "ts-node prisma/seed.ts",
-    "postbuild": "npm run push&&npm run seed"
+    "postbuild": "npm run push"
   },
   "dependencies": {
     "@prisma/client": "3.13.0",
