@@ -1,16 +1,22 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import prisma from '../../lib/prisma'
 
-async function createTodo(label: string) {
+async function createTodo(label: string, id?: string) {
   await prisma.todoItem.create({
     data: {
-      label
+      label,
+      id
     }
   })
 }
-async function deleteTodo(id: string) {
-  await prisma.todoItem.update({
-    where: { id },
+async function deleteTodo(id: string | string[]) {
+  const ids: string[] = typeof id === 'string' ? (id.includes(',') ? id.split(',') : [id]) : id
+  await prisma.todoItem.updateMany({
+    where: {
+      id: {
+        in: ids
+      }
+    },
     data: {
       isDelete: true
     }
@@ -34,7 +40,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
       // create todo
       case 'PUT': {
         const body: { label: string; id?: string } = JSON.parse(req.body)
-        await createTodo(body.label)
+        await createTodo(body.label, body.id)
         break
       }
       // update todo
@@ -45,7 +51,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
       }
       // delete todo
       case 'DELETE': {
-        const id = (req.query.id as string) || (JSON.parse(req.body).id as string)
+        const id = req.query.id || (JSON.parse(req.body).id as string | string[])
         await deleteTodo(id)
         break
       }
