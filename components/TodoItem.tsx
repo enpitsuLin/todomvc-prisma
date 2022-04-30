@@ -49,6 +49,19 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
     fetch('/api/todo', { method: 'POST', body: JSON.stringify({ id: todo.id, label }) })
   }, 1000)
 
+  const deleteTodo = useCallback(() => {
+    fetch(`/api/todo?id=${todo.id}`, { method: 'DELETE' })
+  }, [todo])
+
+  const onDelete = () => {
+    setTodos((todos) => {
+      return todos.filter((t) => {
+        return t.id !== todo.id
+      })
+    })
+    deleteTodo()
+  }
+
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const label = e?.target.value
     setTodos((todos) => {
@@ -101,7 +114,7 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
       <div className="view">
         <input type="checkbox" className="toggle" checked={todo.done} onChange={onDone} autoFocus />
         <label>{todo.label}</label>
-        <button className="destroy" />
+        <button className="destroy" onClick={onDelete} />
       </div>
       {editing && (
         <input
