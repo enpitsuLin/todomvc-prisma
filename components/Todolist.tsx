@@ -28,7 +28,7 @@ const TodoList: React.FC<Props> = ({ todos = [] }) => {
           const id = randomUUID()
           addTodo(newTodo, id)
           setTodos((oldTodos) => {
-            return [...oldTodos, { label: newTodo, id } as Todo]
+            return [...oldTodos, { label: newTodo, id, done: false } as Todo]
           })
           setNewTodo('')
         }
