@@ -4,6 +4,7 @@ specifiers:
   '@prisma/client': 3.13.0
   '@types/node': 16.11.32
   '@types/react': 17.0.44
+  '@types/uuid': ^8.3.4
   jotai: ^1.6.5
   next: 12.1.5
   prisma: 3.13.0
@@ -15,6 +16,7 @@ specifiers:
   ts-node: 10.7.0
   typescript: 4.6.4
   use-debounce: ^7.0.1
+  uuid: ^8.3.2
 
 dependencies:
   '@prisma/client': 3.13.0_prisma@3.13.0
@@ -26,10 +28,12 @@ dependencies:
   react-use: 17.3.2_react-dom@17.0.2+react@17.0.2
   todomvc-app-css: 2.4.2
   use-debounce: 7.0.1_react@17.0.2
+  uuid: 8.3.2
 
 devDependencies:
   '@types/node': 16.11.32
   '@types/react': 17.0.44
+  '@types/uuid': 8.3.4
   prisma: 3.13.0
   ts-node: 10.7.0_053612f007c761766ee2eb0726acd589
   typescript: 4.6.4
@@ -258,6 +262,10 @@ packages:
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
     dev: false
+
+  /@types/uuid/8.3.4:
+    resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
+    dev: true
 
   /@xobotyi/scrollbar-width/1.9.5:
     resolution: {integrity: sha512-N8tkAACJx2ww8vFMneJmaAgmjAG1tnVBZJRLRcx061tmsLRZHSEZSLuGWnwPtunsSLvSqXQ2wfp7Mgqg1I+2dQ==}
@@ -1176,6 +1184,11 @@ packages:
       react: '>=16.8.0'
     dependencies:
       react: 17.0.2
+    dev: false
+
+  /uuid/8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
     dev: false
 
   /uvu/0.5.3:
