@@ -28,11 +28,16 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
   try {
     switch (method) {
-      // add todo/update todo
+      // create todo
+      case 'PUT': {
+        const body: { label: string; id?: string } = JSON.parse(req.body)
+        await createTodo(body.label)
+        break
+      }
+      // update todo
       case 'POST': {
-        const body: { label: string; id?: string; done?: boolean } = JSON.parse(req.body)
-        if (body.id) await updateTodo(body.id, body.label, body.done)
-        else await createTodo(body.label)
+        const body: { label: string; id: string; done?: boolean } = JSON.parse(req.body)
+        await updateTodo(body.id, body.label, body.done)
         break
       }
       // delete todo

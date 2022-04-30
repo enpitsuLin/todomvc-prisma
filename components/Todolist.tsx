@@ -1,3 +1,4 @@
+import { v4 as randomUUID } from 'uuid'
 import { useAtom } from 'jotai'
 import { KeyboardEventHandler, useCallback, useState } from 'react'
 import { activeTodoCountAtom, anyTodosDone, filterType, todosAtom } from '../store/todos'
@@ -15,13 +16,19 @@ const TodoList: React.FC<Props> = ({ todos = [] }) => {
 
   const [newTodo, setNewTodo] = useState('')
 
+  const addTodo = async (label: string, id: string) => {
+    await fetch('/api/todo', { method: 'PUT', body: JSON.stringify({ label, id }) })
+  }
+
   const onAddTodo = useCallback(
     ((e) => {
       if (e.key === 'Enter') {
         e.preventDefault()
         if (newTodo) {
+          const id = randomUUID()
+          addTodo(newTodo, id)
           setTodos((oldTodos) => {
-            return [...oldTodos, { label: newTodo } as Todo]
+            return [...oldTodos, { label: newTodo, id } as Todo]
           })
           setNewTodo('')
         }
