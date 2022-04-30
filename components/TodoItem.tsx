@@ -135,6 +135,3 @@ const TodoItem: React.FC<Props> = ({ todo }) => {
 }
 
 export default TodoItem
-function DOMAttributes<T>() {
-  throw new Error('Function not implemented.')
-}
