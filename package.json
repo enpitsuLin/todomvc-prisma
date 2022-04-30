@@ -10,7 +10,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "push": "prisma db push && ts-node prisma/seed.ts"
+    "generate": "prisma db push --force-reset --accept-data-loss",
+    "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "3.13.0",
