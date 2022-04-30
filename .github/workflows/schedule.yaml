@@ -5,6 +5,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: curl -X GET https://todomvc-prisma.vercel.app/reset-database
+      - run: curl -X POST https://todomvc-prisma.vercel.app/reset-database -d "{\"token\":\"$RESET_TOKEN\"}"
         env:
           RESET_TOKEN: ${{secrets.RESET_TOKEN}}
