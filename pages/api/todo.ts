@@ -9,8 +9,11 @@ async function createTodo(label: string) {
   })
 }
 async function deleteTodo(id: string) {
-  await prisma.todoItem.delete({
-    where: { id }
+  await prisma.todoItem.update({
+    where: { id },
+    data: {
+      isDelete: true
+    }
   })
 }
 async function updateTodo(id: string, label: string, done?: boolean) {
