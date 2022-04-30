@@ -10,7 +10,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "generate": "prisma db push --force-reset --accept-data-loss",
+    "migrate": "prisma migrate dev",
     "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
