@@ -10,8 +10,9 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "migrate": "prisma migrate dev",
-    "seed": "ts-node prisma/seed.ts"
+    "push": "prisma db push",
+    "seed": "ts-node prisma/seed.ts",
+    "postbuild": "npm run push&&npm run seed"
   },
   "dependencies": {
     "@prisma/client": "3.13.0",

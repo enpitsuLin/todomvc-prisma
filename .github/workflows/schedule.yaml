@@ -1,0 +1,10 @@
+on:
+  schedule:
+    - cron: "0 * * * *"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -X GET https://todomvc-prisma.vercel.app/reset-database
+        env:
+          RESET_TOKEN: ${{secrets.RESET_TOKEN}}

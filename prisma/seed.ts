@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 
 const todoData: Prisma.TodoItemCreateInput[] = [
   {
-    label: 'Test1'
+    label: 'Todo Items will be reset pre hour'
   }
 ]
 
