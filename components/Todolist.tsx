@@ -1,5 +1,6 @@
 import { useAtom } from 'jotai'
-import { activeTodoCountAtom, anyTodosDone, filterType } from '../store/todos'
+import { KeyboardEventHandler, useCallback, useState } from 'react'
+import { activeTodoCountAtom, anyTodosDone, filterType, todosAtom } from '../store/todos'
 import TodoItem, { Todo } from './TodoItem'
 
 interface Props {
@@ -7,14 +8,41 @@ interface Props {
 }
 
 const TodoList: React.FC<Props> = ({ todos = [] }) => {
+  const [, setTodos] = useAtom(todosAtom)
   const [type, setType] = useAtom(filterType)
   const [activeCount] = useAtom(activeTodoCountAtom)
   const [anyDone] = useAtom(anyTodosDone)
+
+  const [newTodo, setNewTodo] = useState('')
+
+  const onAddTodo = useCallback(
+    ((e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault()
+        if (newTodo) {
+          setTodos((oldTodos) => {
+            return [...oldTodos, { label: newTodo } as Todo]
+          })
+          setNewTodo('')
+        }
+      }
+    }) as KeyboardEventHandler<HTMLInputElement>,
+    [newTodo]
+  )
   return (
     <>
       <header className="header">
         <h1>todos</h1>
-        <input type="text" className="new-todo" placeholder="What needs to be done?" />
+        <input
+          type="text"
+          className="new-todo"
+          value={newTodo}
+          onChange={(e) => {
+            setNewTodo(e.target.value)
+          }}
+          onKeyPress={onAddTodo}
+          placeholder="What needs to be done?"
+        />
       </header>
       <section className="main">
         <input type="checkbox" className="toggle-all" />
