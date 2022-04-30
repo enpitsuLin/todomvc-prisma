@@ -8,7 +8,7 @@ import { useClickAway } from 'react-use'
 export interface Todo {
   label: string
   done: boolean
-  id: number
+  id: string
   isDelete: boolean
   createAt: string
 }

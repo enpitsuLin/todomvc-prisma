@@ -8,12 +8,12 @@ async function createTodo(label: string) {
     }
   })
 }
-async function deleteTodo(id: number) {
+async function deleteTodo(id: string) {
   await prisma.todoItem.delete({
     where: { id }
   })
 }
-async function updateTodo(id: number, label: string, done?: boolean) {
+async function updateTodo(id: string, label: string, done?: boolean) {
   const data = { label, done: undefined as boolean | undefined }
   if (done !== undefined) {
     data.done = done
@@ -31,14 +31,14 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
       // add todo/update todo
       case 'POST': {
         const body: { label: string; id?: string; done?: boolean } = JSON.parse(req.body)
-        if (body.id) await updateTodo(Number(body.id), body.label, body.done)
+        if (body.id) await updateTodo(body.id, body.label, body.done)
         else await createTodo(body.label)
         break
       }
       // delete todo
       case 'DELETE': {
         const id = (req.query.id as string) || (JSON.parse(req.body).id as string)
-        await deleteTodo(Number(id))
+        await deleteTodo(id)
         break
       }
       // get todos
